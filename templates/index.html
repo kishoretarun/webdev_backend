@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <title>Todo App</title>
+</head>
+
+<body>
+  <div class="form">
+    <form action="/", method='POST'>
+      <h2>Add you Todos</h2>
+      <input type="text" class="input" placeholder="Title" name="title" id="title" />
+      <input type="text" class="input" placeholder="Description" name="description" id="desc" />
+      <input type="submit" class="btn" value="Add" />
+    </form>
+    <div class="todo__container">
+      <h1>Your todos</h1>
+      <div class="table">
+        <div class="head">
+          <div class="item">Sno</div>
+          <div class="item">Title</div>
+          <div class="item">Description</div>
+          <div class="item">Time</div>
+          <div class="item">Actions</div>
+        </div>
+
+        {% for todo in todos %}
+        <div class="tbody">
+          <div class="item">{{loop.index}}</div>
+          <div class="item">{{todo.title}}</div>
+          <div class="item">{{todo.description}}</div>
+          <div class="item">{{todo.time}}</div>
+          <div class="item">
+            <a href="/update/{{todo.sno}}" class="btn-update">Update</a>
+            <a href="/delete/{{todo.sno}}" class="btn-delete">Delete</a>
+          </div>
+        </div>
+        {% endfor %}
+        
+        
+
+
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
